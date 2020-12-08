@@ -1,0 +1,20 @@
+<div class="container">
+    <h1 class="title">Green House Dashboard</h1>
+
+    <div class="row center">
+        <ul class="collection">
+            <% for (let i=0; i < greenhouseData.length; i++) { %> 
+                <li class="collection-item avatar">
+                <img src="assets/ale2.jpg" alt="" class="circle">
+                <span class="title" style="color: #2c0235;" > Area <%= greenhouseData[i].areaID %>  </span>
+                <p> Insects amount: <%= greenhouseData[i].insectsAmount %>  <br>
+                    <%= greenhouseData[i].timeStamp %>
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+            <% } %>
+        </ul>
+        
+    </div>
+    
+</div>

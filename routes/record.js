@@ -33,7 +33,7 @@ module.exports = params => {
         res.send("Succeeded")
 
       } catch (err) {
-        console.log(err);
+        console.log("Error on record endpoint", err);
       }
       
     });
