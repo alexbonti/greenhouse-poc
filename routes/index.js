@@ -8,11 +8,11 @@ const dashboardRoute = require('./dashboard');
 
 
 module.exports = (params) => {
-    router.get('/', (req, res) => {
-        res.render('layout', {
-            template: 'home'
-        });
-    })
+    // router.get('/', (req, res) => {
+    //     res.render('layout', {
+    //         template: 'home'
+    //     });
+    // })
 
     router.use('/test', test());
     router.use('/record', recordRoute(params));
