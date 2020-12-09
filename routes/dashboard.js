@@ -17,7 +17,7 @@ module.exports = params => {
         try {
             await client.connect();
 
-            let greenhouseData = await client.db("greenhouse").collection("test").find({}).toArray();
+            let greenhouseData = await client.db("greenhouse").collection("areas").find({}).toArray();
 
             // greenhouseData.forEach(element => {
             //     let testTime = new Date(element.timeStamp * 100000000);

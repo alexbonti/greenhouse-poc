@@ -1,34 +1,48 @@
 $(document).ready(function(){
   console.log('Ready')
-  
+
+  $('.modal').modal();
+
   //bind the button
-  $('#recordButton').click( () =>{
-    $('#recordForm').submit( (e) => {
-      e.preventDefault();
+  $('.recordButton').click( () =>{
 
-      const areaID = document.getElementById('areaID').value;
-      const insectsAmount = document.getElementById('insectsAmount').value;
-      const timeStamp = e.timeStamp;
+      const areaID = document.getElementById('card-title').innerHTML.toString().trim();
+      const insectsAmount = document.getElementById(`${areaID}_insectsAmount`).value;
 
+      const date = moment().format('LL');
 
+      // console.log()
       let data = {
         areaID,
         insectsAmount,
-        timeStamp
+        date
       }
 
-      $.post('/record', data, (result) => {
-        $('#recordForm')[0].reset();
-        alert(result);
-      })
-    })
-  })
-  
+      // console.log(data);
 
-  //test get call
-  // $.get('/test?user_name="Fantastic User"',(result)=>{
-  //   console.log(result)
-  // })
+      $.post('/record', data)
+
+      location.reload();
+  })
+
+
+  
+  $('#addAreaButton').click( () => {
+    const areaID = document.getElementById('areaID').value
+    // console.log(areaID)
+
+    let data = {
+      areaID
+    };
+
+    $.post('/record/createArea', data)
+
+    location.reload();
+    // , (result) => {
+    //   alert(result);
+    // })
+
+  })
 
 
 })

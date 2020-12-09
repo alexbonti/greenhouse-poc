@@ -28,4 +28,29 @@ label.active {
   color: #2c0235;
   font-weight: bold;
   font-size: large;
+  /* text-align: center; */
+}
+
+#recordForm {
+  margin-top: 11.25px;
+}
+
+#addButton-container {
+  height: 317.531px;
+  margin-top: 7.5px;
+  margin-bottom: 15px;
+}
+
+#addButton {
+  top: 40%;
+  background-color: #9E65A9;
+}
+
+.modal {
+  height: 50%
+}
+
+.card {
+  margin-left: 25px;
+  margin-right: 25px;
 }
