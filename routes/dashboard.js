@@ -12,7 +12,7 @@ router.use(bodyParser.json());
 module.exports = params => {
     const {client} = params;
 
-    router.get("/", async (req, res) => {
+    router.get("/", async (req, res, next) => {
         
         try {
             await client.connect();
@@ -24,13 +24,14 @@ module.exports = params => {
             //     console.log(testTime)
             // });
 
-            res.render('layout', {
+            return res.render('layout', {
                 template: 'dashboard',
                 greenhouseData
             })
 
         } catch (err) {
             console.log("Error on dashboard enpoint", err);
+            return next(err);
         }
 
       });

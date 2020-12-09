@@ -12,13 +12,19 @@ router.use(bodyParser.json());
 module.exports = params => {
   const {client} = params;
 
-    router.get('/', (req, res) => {
-      res.render('layout', {
-        template: 'record'
-      });
+    router.get('/', (req, res, next) => {
+      try {
+        return res.render('layout', {
+          template: 'record'
+        });
+      } catch (err) {
+        console.log("Error rendering record page", err);
+        return next(err);
+      }
+      
     })
 
-    router.get("/save", async (req, res) => {
+    router.post("/", async (req, res, next) => {
       const {areaID, insectsAmount, timeStamp} = req.query;
 
       try {
@@ -27,13 +33,14 @@ module.exports = params => {
         let saveRecord = await client.db("greenhouse").collection("test").insertOne( {areaID, insectsAmount, timeStamp} )
 
         if (!saveRecord.insertedCount) {
-          res.send("Failed")
+          return res.status(500).send("Failed")
         }
 
-        res.send("Succeeded")
+        return res.status(200).send("Succeeded")
 
       } catch (err) {
         console.log("Error on record endpoint", err);
+        return next(err);
       }
       
     });

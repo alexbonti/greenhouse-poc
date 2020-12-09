@@ -17,7 +17,8 @@ $(document).ready(function(){
         timeStamp
       }
 
-      $.get('/record/save', data, (result) => {
+      $.post('/record', data, (result) => {
+        $('#recordForm')[0].reset();
         alert(result);
       })
     })
