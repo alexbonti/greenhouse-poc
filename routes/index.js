@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const test = require('./test');
-const recordRoute = require('./record');
+const counterRoute = require('./counter');
 const dashboardRoute = require('./dashboard');
 
 
@@ -15,7 +15,7 @@ module.exports = (params) => {
     // })
 
     router.use('/test', test());
-    router.use('/record', recordRoute(params));
+    router.use('/counter', counterRoute(params));
     router.use('/dashboard', dashboardRoute(params));
 
 

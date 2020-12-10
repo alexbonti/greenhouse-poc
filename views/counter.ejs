@@ -1,0 +1,95 @@
+<div class="container">
+    <h1 class="title">Green House Dashboard</h1>
+
+    <div class="row center">
+        <% for (let i=0; i < greenhouseData.length; i++) { %> 
+            
+
+                <a class="modal-trigger" data-target="<%= greenhouseData[i].areaID %>_updateAreaModal">
+                    <div class="card col s12">
+                        <div class="card-content">
+                          <span id="card-title" class="card-title activator grey-text text-darken-4"> <%= greenhouseData[i].areaID %>  </span>
+                          <p><b>Last reading</b></p>
+        
+                            <% if (!greenhouseData[i].date) { %>
+                                <p> N/A </p>
+                            <% } else {  %> 
+                                <p> <%= greenhouseData[i].date %> </p>
+                            <% } %>
+        
+                            <% if (!greenhouseData[i].insectsAmount) { %>
+                                <p> N/A </p>
+                            <% } else { %> 
+                                <p> <%= greenhouseData[i].insectsAmount %> <i class="material-icons tiny">bug_report</i> </p>
+                            <% } %> 
+                        </div>
+                    </div>
+                </a>
+
+                <div id="<%= greenhouseData[i].areaID %>_updateAreaModal" class="modal">
+                    <div class="modal-content">
+                        <span class="card-title grey-text text-darken-4"> Update <%= greenhouseData[i].areaID %> </span>
+                        
+                        <form id="<%= greenhouseData[i].areaID %>_recordForm" class="col s12 recordForm">
+                            <div class="input-field col s12">
+                                <input  placeholder="Amount of insects" id="<%= greenhouseData[i].areaID %>_insectsAmount" type="number" class="validate" required>
+                                <label for="insectsAmount"> Insects Amount </label>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="row center">
+                            <button type="submit" id="<%= greenhouseData[i].areaID %>" class="waves-effect waves-light btn-large recordButton" style="background-color: #9E65A9;">
+                                <i class="material-icons left" style="color:white;">update</i>
+                                Record
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+        <% } %>
+
+        
+        
+        
+        <!-- Modal Trigger -->
+        <div id="addButton-container" class="col s12">
+            <button id="addButton" class="waves-effect waves-light btn-floating btn-large modal-trigger" data-target="addCardModal">
+                <i class="material-icons">add</i>
+            </button>
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="addCardModal" class="modal">
+            <div class="modal-content">
+                <h4>New area</h4>
+                <p>Please provide area ID</p>
+                <div class="input-field col s12">
+                    <input  placeholder="Area ID (e.g. A1)" id="areaID" type="text" class="validate" required>
+                    <label for="areaID"> Area ID </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row center">
+                    <a id="addAreaButton" class="modal-close waves-effect waves-light btn">Submit</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+
+<!-- <ul class="collection">
+    <% for (let i=0; i < greenhouseData.length; i++) { %> 
+        <li class="collection-item avatar">
+        <img src="assets/ale2.jpg" alt="" class="circle">
+        <span class="title" style="color: #2c0235;" > Area <%= greenhouseData[i].areaID %>  </span>
+        <p> Insects amount: <%= greenhouseData[i].insectsAmount %>  <br>
+            <%= greenhouseData[i].timeStamp %>
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+    <% } %>
+</ul> -->

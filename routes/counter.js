@@ -1,5 +1,5 @@
 const express = require('express');
-const { check, validator, validationResult } = require('express-validator');
+// const { check, validator, validationResult } = require('express-validator');
 const bodyParser = require ('body-parser');
 
 
@@ -12,17 +12,24 @@ router.use(bodyParser.json());
 module.exports = params => {
   const {client} = params;
 
-  // router.get('/', (req, res, next) => {
-    //   try {
-    //     return res.render('layout', {
-    //       template: 'record'
-    //     });
-    //   } catch (err) {
-    //     console.log("Error rendering record page", err);
-    //     return next(err);
-    //   }
-      
-    // })
+  router.get("/", async (req, res, next) => {
+        
+    try {
+        await client.connect();
+
+        let greenhouseData = await client.db("greenhouse").collection("areas").find({}).toArray();
+
+        return res.render('layout', {
+            template: 'counter',
+            greenhouseData
+        })
+
+    } catch (err) {
+        console.log("Error on dashboard enpoint", err);
+        return next(err);
+    }
+
+  });
 
   const updateArea = async (areaID, insectsAmount, date) => {
     if (areaID && insectsAmount && date) {
@@ -85,7 +92,7 @@ module.exports = params => {
           return res.status(500).send("fail")
         }
 
-        return res.status(200).send("sucess")
+        return res.status(200).send("success")
 
       } catch (err) {
         console.log("Error when create new area", err);

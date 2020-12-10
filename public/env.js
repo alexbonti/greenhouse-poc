@@ -19,14 +19,29 @@ $(document).ready(function(){
 
       // console.log(data);
 
-      $.post('/record', data, (result) => {
+      $.post('/counter', data, (result) => {
         // console.log(result)
         if (result === 'success' ) {
-          
+          $('main').html(`
+            <div class='preloader-wrapper big active'>
+              <div class='spinner-layer spinner-blue-only'>
+                <div class='circle-clipper left'>
+                  <div class='circle'></div>
+                </div><div class='gap-patch'>
+                  <div class='circle'></div>
+                </div><div class='circle-clipper right'>
+                  <div class='circle'></div>
+                </div>
+              </div>
+            </div>
+          `);
+
+          setTimeout(()=>{
+            window.location.reload();
+          },2000)
         }
       })
 
-      // window.location.replace('/dashboard');
   })
 
 
@@ -39,14 +54,28 @@ $(document).ready(function(){
       areaID
     };
 
-    $.post('/record/createArea', data)
+    $.post('/counter/createArea', data, (result) => {
+      // console.log(result)
+      if (result === 'success' ) {
+        $('main').html(`
+          <div class='preloader-wrapper big active'>
+            <div class='spinner-layer spinner-blue-only'>
+              <div class='circle-clipper left'>
+                <div class='circle'></div>
+              </div><div class='gap-patch'>
+                <div class='circle'></div>
+              </div><div class='circle-clipper right'>
+                <div class='circle'></div>
+              </div>
+            </div>
+          </div>
+        `);
 
-    location.reload();
-    // , (result) => {
-    //   alert(result);
-    // })
-
+        setTimeout(()=>{
+          window.location.reload();
+        },2000)
+      }
+    })
   })
-
 
 })
