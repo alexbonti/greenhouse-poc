@@ -11,10 +11,10 @@
                           <span id="card-title" class="card-title activator grey-text text-darken-4"> <%= greenhouseData[i].areaID %>  </span>
                           <p><b>Last reading</b></p>
         
-                            <% if (!greenhouseData[i].date) { %>
+                            <% if (!greenhouseData[i].timeStamp) { %>
                                 <p> N/A </p>
                             <% } else {  %> 
-                                <p> <%= greenhouseData[i].date %> </p>
+                                <p> <%= greenhouseData[i].timeStamp %> </p>
                             <% } %>
         
                             <% if (!greenhouseData[i].insectsAmount) { %>

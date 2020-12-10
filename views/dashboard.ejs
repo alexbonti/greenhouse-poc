@@ -57,10 +57,10 @@
                     <div class="card-content">
                         <div class="col s9 l9 ">
                             <div class="col s12 " ><span>Area Name <b><%= greenhouseData[i].areaID %> </b></span></div>
-                            <div class="col s12 "><span>Last reading<b> <% if (!greenhouseData[i].date) { %>
+                            <div class="col s12 "><span>Last reading<b> <% if (!greenhouseData[i].timeStamp) { %>
                                 N/A 
                             <% } else {  %> 
-                                 <%= greenhouseData[i].date %> 
+                                 <%= greenhouseData[i].timeStamp %> 
                             <% } %></b></span>
                             </div>
                         
