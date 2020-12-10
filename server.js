@@ -6,7 +6,7 @@ let path = require('path');
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://dbUser:dbUser@hyperledgercertificate.hgp6r.mongodb.net/firstdb?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
+client.connect();
 var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/public'));

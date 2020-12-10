@@ -48,7 +48,7 @@ module.exports = params => {
       console.log("Record endpoint check", areaID, insectsAmount, date)
 
       try {
-        await client.connect();
+        //await client.connect();
 
         if (!areaID || !insectsAmount || !date) {
           return res.status(500).send("Failed")
@@ -79,7 +79,7 @@ module.exports = params => {
       console.log(areaID)
 
       try {
-        await client.connect()
+        //await client.connect()
 
         const areaGenerated = await client.db("greenhouse").collection("areas").insertOne({ areaID, insectsAmount: null, date: null });
 

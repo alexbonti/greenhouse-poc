@@ -15,7 +15,7 @@ module.exports = params => {
     router.get("/", async (req, res, next) => {
         
         try {
-            await client.connect();
+          //  await client.connect();
 
             let greenhouseData = await client.db("greenhouse").collection("areas").find({}).toArray();
 
