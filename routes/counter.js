@@ -2,6 +2,7 @@ const express = require('express');
 // const { check, validator, validationResult } = require('express-validator');
 const bodyParser = require('body-parser');
 const moment = require('moment');
+const ObjectId = require('mongodb').ObjectId;
 
 
 const router = express.Router();
@@ -40,9 +41,9 @@ module.exports = params => {
   });
 
   const updateArea = async (podID, insectsAmount, timeStamp) => {
-    console.log(podID)
+    console.log(`ObjectId("${podID}")`)
     if (podID && insectsAmount && timeStamp) {
-      let result = await client.db("greenhouse").collection("areas").updateOne({ _id: ObjectId(podID), }, {
+      let result = await client.db("greenhouse").collection("areas").updateOne({ _id: ObjectId(podID.toString()) }, {
         $set: { insectsAmount, timeStamp }
       })
       //console.log("Update area test", result);
@@ -52,7 +53,7 @@ module.exports = params => {
   }
 
   router.post("/", async (req, res, next) => {
-    const { _id,areaID, insectsAmount, timeStamp } = req.body;
+    const { _id, insectsAmount, timeStamp } = req.body;
 
     // console.log("Record endpoint check", areaID, insectsAmount, timeStamp)
 
@@ -85,14 +86,14 @@ module.exports = params => {
   });
 
   router.post("/createArea", async (req, res, next) => {
-    const { areaID } = req.body;
+    const { podName } = req.body;
 
-    console.log(areaID)
+    console.log(podName)
 
     try {
       //await client.connect()
 
-      const areaGenerated = await client.db("greenhouse").collection("areas").insertOne({ areaID, insectsAmount: 0, timeStamp: null });
+      const areaGenerated = await client.db("greenhouse").collection("areas").insertOne({ podName, insectsAmount: 0, timeStamp: null });
 
       if (!areaGenerated.insertedCount) {
         return res.status(500).send("fail")

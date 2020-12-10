@@ -27,7 +27,7 @@ $(document).ready(function(){
         timeStamp
       }
 
-     console.log(data);
+    //  console.log(data);
 
       $.post('/counter', data, (result) => {
         // console.log(result)
@@ -57,11 +57,11 @@ $(document).ready(function(){
 
   
   $('#addAreaButton').click( () => {
-    const areaID = document.getElementById('areaID').value
-    // console.log(areaID)
+    const podName = document.getElementById('podName').value
+    // console.log(podName)
 
     let data = {
-      areaID
+      podName
     };
 
     $.post('/counter/createArea', data, (result) => {

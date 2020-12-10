@@ -51,12 +51,12 @@
         <div class="col s12 m6 l6">
             <h3 class="title">Pods</h3>
             <% for (let i=0; i < greenhouseData.length; i++) { %> 
-                <div class="card-panel col l12 cardPod" id=<%= greenhouseData[i].areaID %> >
+                <div class="card-panel col l12 cardPod" id=<%= greenhouseData[i]._id %> >
                
     
                     <div class="card-content">
                         <div class="col s9 l9 ">
-                            <div class="col s12 " ><span>Area Name <b><%= greenhouseData[i].areaID %> </b></span></div>
+                            <div class="col s12 " ><span>Pod Name <b><%= greenhouseData[i].podName %> </b></span></div>
                             <div class="col s12 "><span>Last reading<b> <% if (!greenhouseData[i].timeStamp) { %>
                                 N/A 
                             <% } else {  %> 
@@ -78,22 +78,22 @@
                        
                     </div>
     
-                    <!--button class="waves-effect waves-light btn modal-trigger" data-target="<%= greenhouseData[i].areaID %>_updateAreaModal">
+                    <!--button class="waves-effect waves-light btn modal-trigger" data-target="<%= greenhouseData[i]._id %>_updateAreaModal">
                         <i class="material-icons">update</i>
                     </button-->
     
-                    <div id="<%= greenhouseData[i].areaID %>" class="modal">
+                    <div id="<%= greenhouseData[i]._id %>" class="modal">
                         <div class="modal-content">
-                            <span class="card-title grey-text text-darken-4"> Update <%= greenhouseData[i].areaID %> </span>
+                            <span class="card-title grey-text text-darken-4"> Update <%= greenhouseData[i].podName %> </span>
                             
-                            <form id="<%= greenhouseData[i].areaID %>_recordForm" class="col s12 recordForm">
+                            <form id="<%= greenhouseData[i]._id %>_recordForm" class="col s12 recordForm">
                                 <div class="input-field col s12">
-                                    <input  placeholder="Amount of insects" id="<%= greenhouseData[i].areaID %>_insectsAmount" type="number" class="validate" required>
+                                    <input  placeholder="Amount of insects" id="<%= greenhouseData[i]._id %>_insectsAmount" type="number" class="validate" required>
                                     <label for="insectsAmount"> Insects Amount </label>
                                 </div>
     
                                 <div class="row center">
-                                    <button type="submit" id="<%= greenhouseData[i].areaID %>" class="waves-effect waves-light btn-large recordButton" style="background-color: #9E65A9;">
+                                    <button type="submit" id="<%= greenhouseData[i]._id %>" class="waves-effect waves-light btn-large recordButton" style="background-color: #9E65A9;">
                                         <i class="material-icons left" style="color:white;">emoji_people</i>
                                         Record
                                     </button>
@@ -104,21 +104,6 @@
                     </div>
                     
     
-                    <!-- <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4"> Update <%= greenhouseData[i].areaID %> <i class="material-icons right">close</i></span>
-                      
-                      <form id="<%= greenhouseData[i].areaID %>_recordForm" class="col s12">
-                        <div class="input-field col s12">
-                            <input  placeholder="Amount of insects" id="<%= greenhouseData[i].areaID %>_insectsAmount" type="number" class="validate" required>
-                            <label for="insectsAmount"> Insects Amount </label>
-                        </div>
-                        <button type="submit" id="<%= greenhouseData[i].areaID %>_recordButton" class="waves-effect waves-light btn-large recordButton" style="background-color: #9E65A9;">
-                            <i class="material-icons left" style="color:white;">emoji_people</i>
-                            Record
-                        </button>
-                        </form>
-                    
-                    </div> -->
                 </div>
             <% } %>
         </div>
@@ -150,8 +135,8 @@
                 <h4>New area</h4>
                 <p>Please provide area ID</p>
                 <div class="input-field col s12">
-                    <input  placeholder="Area ID (e.g. A1)" id="areaID" type="text" class="validate" required>
-                    <label for="areaID"> Area ID </label>
+                    <input  placeholder="Pod Name (e.g. A1)" id="podName" type="text" class="validate" required>
+                    <label for="podName"> Pod Name </label>
                 </div>
             </div>
             <div class="modal-footer">
@@ -164,16 +149,3 @@
     </div>
     
 </div>
-
-<!-- <ul class="collection">
-    <% for (let i=0; i < greenhouseData.length; i++) { %> 
-        <li class="collection-item avatar">
-        <img src="assets/ale2.jpg" alt="" class="circle">
-        <span class="title" style="color: #2c0235;" > Area <%= greenhouseData[i].areaID %>  </span>
-        <p> Insects amount: <%= greenhouseData[i].insectsAmount %>  <br>
-            <%= greenhouseData[i].timeStamp %>
-        </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-    <% } %>
-</ul> -->
