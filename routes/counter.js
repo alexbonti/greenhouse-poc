@@ -86,7 +86,7 @@ module.exports = params => {
       try {
         //await client.connect()
 
-        const areaGenerated = await client.db("greenhouse").collection("areas").insertOne({ areaID, insectsAmount: null, date: null });
+        const areaGenerated = await client.db("greenhouse").collection("areas").insertOne({ areaID, insectsAmount: 0, date: null });
 
         if (!areaGenerated.insertedCount) {
           return res.status(500).send("fail")
