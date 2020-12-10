@@ -19,11 +19,6 @@ module.exports = params => {
 
             let greenhouseData = await client.db("greenhouse").collection("areas").find({}).toArray();
 
-            // greenhouseData.forEach(element => {
-            //     let testTime = new Date(element.timeStamp * 100000000);
-            //     console.log(testTime)
-            // });
-
             return res.render('layout', {
                 template: 'dashboard',
                 greenhouseData
