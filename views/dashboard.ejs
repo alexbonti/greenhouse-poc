@@ -5,11 +5,11 @@
         <div class="col s12 m4">
             <div class="card-panel teal" style="height: 100px;">
                 
-                <div class="col s9 ">
+                <div class="col s6 ">
                     <span class="white-text "> Parassites Level
                     </span>
                 </div>
-                <div class="col s3">
+                <div class="col s6">
                     <span class="white-text" style="
                     font-size: xxx-large;
                 ">  <%= totalInsects %> </span>
@@ -51,7 +51,7 @@
         <div class="col s12 m6 l6">
             <h3 class="title">Pods</h3>
             <% for (let i=0; i < greenhouseData.length; i++) { %> 
-                <div class="card-panel col l12">
+                <div class="card-panel col l12 cardPod" id=<%= greenhouseData[i]._id %> >
                
     
                     <div class="card-content">

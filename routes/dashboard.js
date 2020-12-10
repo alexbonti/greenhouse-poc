@@ -12,7 +12,7 @@ router.use(bodyParser.json());
 const calcTotal=data=>{
    let totalInsects=0
     data.forEach(element => {
-        totalInsects+=element.insectsAmount
+        totalInsects+=parseInt(element.insectsAmount)
         
     });
     return totalInsects

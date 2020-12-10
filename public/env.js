@@ -4,6 +4,14 @@ $(document).ready(function(){
   $('.modal').modal();
 
   //bind the button
+
+  $('.cardPod').click((e)=>{
+    console.log(e.target)
+    e.preventDefault();
+    //alert(e.id)
+
+  })
+
   $('.recordButton').click( (e) =>{
       e.preventDefault();
 
