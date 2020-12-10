@@ -28,6 +28,7 @@ module.exports = params => {
           //  await client.connect();
             let totalInsects=0;
             let greenhouseData = await client.db("greenhouse").collection("areas").find({}).toArray();
+            console.log(greenhouseData)
             if(greenhouseData.length>0){
                 totalInsects=calcTotal(greenhouseData)
             }

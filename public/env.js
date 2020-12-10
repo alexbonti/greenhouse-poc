@@ -6,7 +6,8 @@ $(document).ready(function(){
   //bind the button
 
   $('.cardPod').click((e)=>{
-    console.log(e.target)
+    let el=$(e.target)
+    console.log(el.closest('.cardPod').attr('id'))
     e.preventDefault();
     //alert(e.id)
 
@@ -14,19 +15,19 @@ $(document).ready(function(){
 
   $('.recordButton').click( (e) =>{
       e.preventDefault();
-      // console.log(e);
+    
 
-      const areaID = e.target.id;
-      const insectsAmount = document.getElementById(`${areaID}_insectsAmount`).value;
+      const _id = e.target.id;
+      const insectsAmount = document.getElementById(`${_id}_insectsAmount`).value;
       const timeStamp = moment().unix();
 
       let data = {
-        areaID,
+        _id,
         insectsAmount,
         timeStamp
       }
 
-      // console.log(data);
+     console.log(data);
 
       $.post('/counter', data, (result) => {
         // console.log(result)
@@ -47,7 +48,7 @@ $(document).ready(function(){
 
           setTimeout(()=>{
             window.location.reload();
-          },2000)
+          },1000)
         }
       })
 

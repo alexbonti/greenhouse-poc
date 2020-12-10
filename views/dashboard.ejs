@@ -51,7 +51,7 @@
         <div class="col s12 m6 l6">
             <h3 class="title">Pods</h3>
             <% for (let i=0; i < greenhouseData.length; i++) { %> 
-                <div class="card-panel col l12 cardPod" id=<%= greenhouseData[i]._id %> >
+                <div class="card-panel col l12 cardPod" id=<%= greenhouseData[i].areaID %> >
                
     
                     <div class="card-content">
@@ -82,7 +82,7 @@
                         <i class="material-icons">update</i>
                     </button-->
     
-                    <div id="<%= greenhouseData[i].areaID %>_updateAreaModal" class="modal">
+                    <div id="<%= greenhouseData[i].areaID %>" class="modal">
                         <div class="modal-content">
                             <span class="card-title grey-text text-darken-4"> Update <%= greenhouseData[i].areaID %> </span>
                             
