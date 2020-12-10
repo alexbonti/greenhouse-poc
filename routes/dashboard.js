@@ -1,6 +1,7 @@
 const express = require('express');
 // const { check, validator, validationResult } = require('express-validator');
 const bodyParser = require ('body-parser');
+const moment = require('moment');
 
 
 const router = express.Router();
@@ -31,6 +32,13 @@ module.exports = params => {
                 totalInsects=calcTotal(greenhouseData)
             }
             //console.log(greenhouseData)
+
+            greenhouseData.forEach(entry => {
+                if (entry.timeStamp) {
+                  const convertedTimeStamp = moment.unix(entry.timeStamp).format('LL');
+                  entry.timeStamp = convertedTimeStamp;
+                }
+            })
 
             return res.render('layout', {
                 template: 'dashboard',
