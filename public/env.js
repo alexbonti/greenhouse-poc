@@ -6,15 +6,16 @@ $(document).ready(function(){
   //bind the button
   $('.recordButton').click( (e) =>{
       e.preventDefault();
+      // console.log(e);
 
       const areaID = e.target.id;
       const insectsAmount = document.getElementById(`${areaID}_insectsAmount`).value;
-      const date = moment().format('LL');
+      const timeStamp = moment().unix();
 
       let data = {
         areaID,
         insectsAmount,
-        date
+        timeStamp
       }
 
       // console.log(data);

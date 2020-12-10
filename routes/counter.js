@@ -1,6 +1,7 @@
 const express = require('express');
 // const { check, validator, validationResult } = require('express-validator');
 const bodyParser = require ('body-parser');
+const moment = require('moment');
 
 
 const router = express.Router();
@@ -19,6 +20,13 @@ module.exports = params => {
 
         let greenhouseData = await client.db("greenhouse").collection("areas").find({}).toArray();
 
+        greenhouseData.forEach(entry => {
+          if (entry.timeStamp) {
+            const convertedTimeStamp = moment.unix(entry.timeStamp).format('LL');
+            entry.timeStamp = convertedTimeStamp;
+          }
+        })
+
         return res.render('layout', {
             template: 'counter',
             greenhouseData
@@ -31,11 +39,11 @@ module.exports = params => {
 
   });
 
-  const updateArea = async (areaID, insectsAmount, date) => {
-    if (areaID && insectsAmount && date) {
+  const updateArea = async (areaID, insectsAmount, timeStamp) => {
+    if (areaID && insectsAmount && timeStamp) {
 
       let result = await client.db("greenhouse").collection("areas").updateOne({ areaID: areaID, }, {
-        $set: { insectsAmount, date }
+        $set: { insectsAmount, timeStamp }
       })
 
       console.log("Update area test", result);
@@ -46,22 +54,22 @@ module.exports = params => {
   }
 
     router.post("/", async (req, res, next) => {
-      const {areaID, insectsAmount, date} = req.body;
+      const {areaID, insectsAmount, timeStamp} = req.body;
 
-      // console.log("Record endpoint check", areaID, insectsAmount, date)
+      // console.log("Record endpoint check", areaID, insectsAmount, timeStamp)
 
       try {
         //await client.connect();
 
-        if (!areaID || !insectsAmount || !date) {
+        if (!areaID || !insectsAmount || !timeStamp) {
           return res.status(500).send("Failed")
         }
 
         // Insert the new update in the general collection
-        let generalRecord = await client.db("greenhouse").collection("general").insertOne({ areaID, insectsAmount, date });
+        let generalRecord = await client.db("greenhouse").collection("general").insertOne({ areaID, insectsAmount, timeStamp });
 
         // Update the relevant area with the new input
-        let areaUpdated = await updateArea(areaID, insectsAmount, date);
+        let areaUpdated = await updateArea(areaID, insectsAmount, timeStamp);
 
         console.log("Record endpoint check", areaUpdated)
 
@@ -86,7 +94,7 @@ module.exports = params => {
       try {
         //await client.connect()
 
-        const areaGenerated = await client.db("greenhouse").collection("areas").insertOne({ areaID, insectsAmount: 0, date: null });
+        const areaGenerated = await client.db("greenhouse").collection("areas").insertOne({ areaID, insectsAmount: 0, timeStamp: null });
 
         if (!areaGenerated.insertedCount) {
           return res.status(500).send("fail")
