@@ -24,28 +24,24 @@ module.exports = params => {
       
     // })
 
-  const updateArea = (areaID, insectsAmount, date) => {
+  const updateArea = async (areaID, insectsAmount, date) => {
     if (areaID && insectsAmount && date) {
 
-      console.log("Update area test");
-
-      client.db("greenhouse").collection("areas").updateOne({ areaID: areaID, }, {
+      let result = await client.db("greenhouse").collection("areas").updateOne({ areaID: areaID, }, {
         $set: { insectsAmount, date }
-      }, (err, result) => {
-        
-        console.log("Update result", result);
-
-        if (err) {
-          console.log("Error when update an answer", err)
-        }
       })
+
+      console.log("Update area test", result);
+
+      return result.modifiedCount;
     }
+    return null;
   }
 
     router.post("/", async (req, res, next) => {
       const {areaID, insectsAmount, date} = req.body;
 
-      console.log("Record endpoint check", areaID, insectsAmount, date)
+      // console.log("Record endpoint check", areaID, insectsAmount, date)
 
       try {
         await client.connect();
@@ -58,13 +54,15 @@ module.exports = params => {
         let generalRecord = await client.db("greenhouse").collection("general").insertOne({ areaID, insectsAmount, date });
 
         // Update the relevant area with the new input
-        updateArea(areaID, insectsAmount, date);
+        let areaUpdated = await updateArea(areaID, insectsAmount, date);
 
-        if (!generalRecord.insertedCount) {
-          return res.status(500).send("Failed")
+        console.log("Record endpoint check", areaUpdated)
+
+        if (!generalRecord.insertedCount || !areaUpdated) {
+          return res.status(500).send("fail")
         }
 
-        return res.status(200).send("Succeeded")
+        return res.status(200).send("success")
 
       } catch (err) {
         console.log("Error on record endpoint", err);
@@ -84,10 +82,10 @@ module.exports = params => {
         const areaGenerated = await client.db("greenhouse").collection("areas").insertOne({ areaID, insectsAmount: null, date: null });
 
         if (!areaGenerated.insertedCount) {
-          return res.status(500).send("Failed")
+          return res.status(500).send("fail")
         }
 
-        return res.status(200).send("Succeeded")
+        return res.status(200).send("sucess")
 
       } catch (err) {
         console.log("Error when create new area", err);
