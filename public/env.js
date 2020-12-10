@@ -4,14 +4,13 @@ $(document).ready(function(){
   $('.modal').modal();
 
   //bind the button
-  $('.recordButton').click( () =>{
+  $('.recordButton').click( (e) =>{
+      e.preventDefault();
 
-      const areaID = document.getElementById('card-title').innerHTML.toString().trim();
+      const areaID = e.target.id;
       const insectsAmount = document.getElementById(`${areaID}_insectsAmount`).value;
-
       const date = moment().format('LL');
 
-      // console.log()
       let data = {
         areaID,
         insectsAmount,
@@ -20,9 +19,14 @@ $(document).ready(function(){
 
       // console.log(data);
 
-      $.post('/record', data)
+      $.post('/record', data, (result) => {
+        // console.log(result)
+        if (result === 'success' ) {
+          
+        }
+      })
 
-      location.reload();
+      // window.location.replace('/dashboard');
   })
 
 

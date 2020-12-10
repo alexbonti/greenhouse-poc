@@ -31,23 +31,25 @@
 
                 <div id="<%= greenhouseData[i].areaID %>_updateAreaModal" class="modal">
                     <div class="modal-content">
-                        <span class="card-title grey-text text-darken-4"> Update <%= greenhouseData[i].areaID %> <i class="material-icons right">close</i></span>
+                        <span class="card-title grey-text text-darken-4"> Update <%= greenhouseData[i].areaID %> </span>
                         
-                        <form id="recordForm" class="col s12">
+                        <form id="<%= greenhouseData[i].areaID %>_recordForm" class="col s12 recordForm">
                             <div class="input-field col s12">
                                 <input  placeholder="Amount of insects" id="<%= greenhouseData[i].areaID %>_insectsAmount" type="number" class="validate" required>
                                 <label for="insectsAmount"> Insects Amount </label>
+                            </div>
+
+                            <div class="row center">
+                                <button type="submit" id="<%= greenhouseData[i].areaID %>" class="waves-effect waves-light btn-large recordButton" style="background-color: #9E65A9;">
+                                    <i class="material-icons left" style="color:white;">emoji_people</i>
+                                    Record
+                                </button>
                             </div>
                         </form>
                     </div>
 
                     <div class="modal-footer">
-                        <div class="row center">
-                            <button type="submit" id="recordButton" class="waves-effect waves-light btn-large recordButton" style="background-color: #9E65A9;">
-                                <i class="material-icons left" style="color:white;">emoji_people</i>
-                                Record
-                            </button>
-                        </div>
+                        
                     </div>
                 </div>
                 
