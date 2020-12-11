@@ -1,4 +1,9 @@
 $(document).ready(function(){
+
+  
+  $(document).ready(function(){
+    $('.tabs').tabs();
+  });
   console.log('Ready Test')
 
   $('.modal').modal();

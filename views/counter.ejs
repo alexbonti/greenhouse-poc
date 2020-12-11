@@ -2,54 +2,70 @@
     <h1 class="title">Bugs Counter</h1>
 
     <div class="row center">
-        <% for (let i=0; i < greenhouseData.length; i++) { %> 
+        <div class="row">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s6"><a href="#test1">Data</a></li>
+                <li class="tab col s6"><a class="active" href="#test2">Map</a></li>
+
+              </ul>
+            </div>
+            <div id="test1" class="col s12">
+                <% for (let i=0; i < greenhouseData.length; i++) { %> 
             
 
-                <a class="listedPodCard modal-trigger" href="#<%= greenhouseData[i]._id %>">
-                    <div class="card col s12">
-                        <div class="card-content">
-                          <span id="card-title" class="card-title activator grey-text text-darken-4"> Pod Name <%= greenhouseData[i].podName %>  </span>
-                          <p><b>Last reading</b></p>
-        
-                            <% if (!greenhouseData[i].timeStamp) { %>
-                                <p> N/A </p>
-                            <% } else {  %> 
-                                <p> <%= greenhouseData[i].timeStamp %> </p>
-                            <% } %>
-        
-                            <% if (!greenhouseData[i].insectsAmount) { %>
-                                <p> N/A </p>
-                            <% } else { %> 
-                                <p> <%= greenhouseData[i].insectsAmount %> <i class="material-icons tiny">bug_report</i> </p>
-                            <% } %> 
-                        </div>
-                    </div>
-                </a>
-
-                <div id="<%= greenhouseData[i]._id %>" class="modal">
-                    <div class="modal-content">
-                        <span class="card-title grey-text text-darken-4"> Update pod <%= greenhouseData[i].podName %> </span>
-                        
-                        <form id="<%= greenhouseData[i]._id %>_recordForm" class="col s12 recordForm">
-                            <div class="input-field col s12">
-                                <input  placeholder="Amount of insects" id="<%= greenhouseData[i]._id %>_insectsAmount" type="number" class="validate" required>
-                                <label for="insectsAmount"> Insects Amount </label>
+                    <a class="listedPodCard modal-trigger" href="#<%= greenhouseData[i]._id %>">
+                        <div class="card col s12">
+                            <div class="card-content">
+                              <span id="card-title" class="card-title activator grey-text text-darken-4"> Pod Name <%= greenhouseData[i].podName %>  </span>
+                              <p><b>Last reading</b></p>
+            
+                                <% if (!greenhouseData[i].timeStamp) { %>
+                                    <p> N/A </p>
+                                <% } else {  %> 
+                                    <p> <%= greenhouseData[i].timeStamp %> </p>
+                                <% } %>
+            
+                                <% if (!greenhouseData[i].insectsAmount) { %>
+                                    <p> N/A </p>
+                                <% } else { %> 
+                                    <p> <%= greenhouseData[i].insectsAmount %> <i class="material-icons tiny">bug_report</i> </p>
+                                <% } %> 
                             </div>
-                        </form>
-                    </div>
-
-                    <div class="modal-footer">
-                        <div class="row center">
-                            <button type="submit" id="<%= greenhouseData[i]._id %>" class="waves-effect waves-light btn-large recordButton" style="background-color: #9E65A9;">
-                                <i class="material-icons left" style="color:white;">update</i>
-                                Record
-                            </button>
+                        </div>
+                    </a>
+    
+                    <div id="<%= greenhouseData[i]._id %>" class="modal">
+                        <div class="modal-content">
+                            <span class="card-title grey-text text-darken-4"> Update pod <%= greenhouseData[i].podName %> </span>
+                            
+                            <form id="<%= greenhouseData[i]._id %>_recordForm" class="col s12 recordForm">
+                                <div class="input-field col s12">
+                                    <input  placeholder="Amount of insects" id="<%= greenhouseData[i]._id %>_insectsAmount" type="number" class="validate" required>
+                                    <label for="insectsAmount"> Insects Amount </label>
+                                </div>
+                            </form>
+                        </div>
+    
+                        <div class="modal-footer">
+                            <div class="row center">
+                                <button type="submit" id="<%= greenhouseData[i]._id %>" class="waves-effect waves-light btn-large recordButton" style="background-color: #9E65A9;">
+                                    <i class="material-icons left" style="color:white;">update</i>
+                                    Record
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    
+            <% } %>
+    
+            </div>
+            <div id="test2" class="col s12">
                 
-        <% } %>
+            </div>
 
+        </div>
+        
         
         
         
