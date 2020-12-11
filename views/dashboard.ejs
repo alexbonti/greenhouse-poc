@@ -36,7 +36,9 @@
             <div class="card-panel teal waves-effect waves-light  btn-large modal-trigger" data-target="addCardModal" style="height: 100px; width: 100%;">
 
             
-                    <span class="white-text "> Add Pod
+                    <span class="white-text " style="
+                    font-size: x-large;
+                "> Add Pod
                     </span>
              
                
@@ -98,8 +100,9 @@
         </div>
         <div class="col s12 m6 l6">
             <h3 class="title">Map</h3>
-            <div class="card-panel col l12 white" style="height: 300px;">
+            <div class="card-panel col l12 white" style="height: 400px;">
                    Graph
+                   <canvas id="myChart"></canvas>
             </div>
             <div class="card-panel col l12 white" style="height: 300px;">
                 Map
@@ -138,3 +141,48 @@
     </div>
     
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script type='text/javascript'>
+
+    const createData=data=>{
+        labels=[]
+        values=[]
+        data.forEach(element => {
+            labels.push(element.podName)
+            values.push(element.insectsAmount)
+            
+        });
+        let package={
+            labels,values
+        }
+        return package
+    }
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var data =<%-JSON.stringify(greenhouseData)%>
+    console.log(data)
+    package=createData(data)
+    console.log(package)
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: package.labels,
+        datasets: [{
+            label: 'Current Parassites',
+            data: package.values,
+         
+          
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+  </script>

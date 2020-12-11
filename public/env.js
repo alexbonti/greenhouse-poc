@@ -26,7 +26,7 @@ $(document).ready(function(){
             <div class="card-content">
               <div >
                 <div class="col s12 " > <span> <b> Reading </b> </span></div>
-                <div class="col s6 l6 "> <span> Date: ${moment.unix(parseInt(value.timeStamp)).format('LL')} </span> </div>
+                <div class="col s6 l6 "> <span>  ${moment.unix(parseInt(value.timeStamp)).format('l - LT')} </span> </div>
                 <div class="col s6 l6 "> <span>  ${value.insectsAmount} </span> </div>
               </div>
             
