@@ -72,3 +72,16 @@ a.hover {
 .card-content {
   color: black;
 }
+
+#podName_span {
+  font-size: 18px;
+}
+
+#insectsAmount_span {
+  font-size: 30px;
+}
+
+#insect-icon {
+  margin-top: 20px;
+  font-size: 30px;
+}
