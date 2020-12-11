@@ -36,8 +36,8 @@ module.exports = params => {
 
             greenhouseData.forEach(entry => {
                 if (entry.timeStamp) {
-                  const convertedTimeStamp = moment.unix(entry.timeStamp).format('LL');
-                  entry.timeStamp = convertedTimeStamp;
+                  const convertedTimeStamp = moment.unix(entry.timeStamp);
+                  entry.timeStamp = moment(convertedTimeStamp).fromNow();
                 }
             })
 
