@@ -1,27 +1,36 @@
 <div class="container">
     <h1 class="title">Bugs Counter</h1>
 
-    <div class="row center">
+    <div class="row">
         <% for (let i=0; i < greenhouseData.length; i++) { %> 
             
-
                 <a class="listedPodCard modal-trigger" href="#<%= greenhouseData[i]._id %>">
                     <div class="card col s12">
                         <div class="card-content">
-                          <span id="card-title" class="card-title activator grey-text text-darken-4"> Pod Name <%= greenhouseData[i].podName %>  </span>
-                          <p><b>Last reading</b></p>
-        
-                            <% if (!greenhouseData[i].timeStamp) { %>
-                                <p> N/A </p>
-                            <% } else {  %> 
-                                <p> <%= greenhouseData[i].timeStamp %> </p>
-                            <% } %>
-        
-                            <% if (!greenhouseData[i].insectsAmount) { %>
-                                <p> N/A </p>
-                            <% } else { %> 
-                                <p> <%= greenhouseData[i].insectsAmount %> <i class="material-icons tiny">bug_report</i> </p>
-                            <% } %> 
+                            
+                            <div class="col s8 l8 ">
+                                <div class="col s12 " ><span id="podName_span">Pod Name <b><%= greenhouseData[i].podName %> </b></span></div>
+                                <div class="col s12 "><span>Last reading<b> <% if (!greenhouseData[i].timeStamp) { %>
+                                    N/A 
+                                <% } else {  %> 
+                                     <%= greenhouseData[i].timeStamp %> 
+                                <% } %></b></span>
+                                </div>
+                            
+                            </div>
+
+                            <div class="col s1 l1"> 
+                                <i id="insect-icon" class="material-icons tiny">bug_report</i>
+                            </div>
+
+                            <div class="col s3 l3 ">
+                                <span id="insectsAmount_span"><p><b> <% if (!greenhouseData[i].insectsAmount) { %>
+                                    N/A 
+                               <% } else { %> 
+                                    <%= greenhouseData[i].insectsAmount %> 
+                               <% } %> </b></p></span>
+                            </div>
+
                         </div>
                     </div>
                 </a>

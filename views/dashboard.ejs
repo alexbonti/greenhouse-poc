@@ -105,8 +105,9 @@
                    <canvas id="myChart"></canvas>
             </div>
             <div class="card-panel col l12 white" style="height: 300px;">
-                Map
-         </div>
+                <p> Map </p>
+                <img  src="assets/map.jpg" />
+            </div>
 
         </div>
 
@@ -158,7 +159,7 @@
         return package
     }
     var ctx = document.getElementById('myChart').getContext('2d');
-    var data =<%-JSON.stringify(greenhouseData)%>
+    var data = <%-JSON.stringify(greenhouseData)%>
     console.log(data)
     package=createData(data)
     console.log(package)
