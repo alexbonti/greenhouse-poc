@@ -43,7 +43,7 @@ module.exports = params => {
 
             return res.render('layout', {
                 template: 'dashboard',
-                greenhouseData,totalInsects
+                greenhouseData, totalInsects
             })
 
         } catch (err) {

@@ -5,12 +5,35 @@ $(document).ready(function(){
 
   //bind the button
 
-  $('.cardPod').click((e)=>{
-    let el=$(e.target)
-    console.log(el.closest('.cardPod').attr('id'))
-    e.preventDefault();
-    //alert(e.id)
+  $('.podCard').click( (e) => {
+    let el=e.currentTarget.attributes;
+    // console.log(el.data.value)
 
+    podID = el.data.value;
+
+    data = {
+      podID
+    }
+
+    $.get('/data/pod', data, podHistory => {
+      $('.historical-data').html("")
+
+      $.each(podHistory, (index, value) => {
+        // console.log(value)
+        $(`#${value.podID}_historical-data`).append(`
+          <div class="card-panel col l12" >
+                
+            <div class="card-content">
+              <div >
+                <div class="col s12 " > <span> <b> Reading </b> </span></div>
+                <div class="col s6 l6 "> <span> Date: ${moment.unix(parseInt(value.timeStamp)).format('LL')} </span> </div>
+                <div class="col s6 l6 "> <span>  ${value.insectsAmount} </span> </div>
+              </div>
+            
+          </div>
+        `)
+      })
+    })
   })
 
   $('.recordButton').click( (e) =>{
