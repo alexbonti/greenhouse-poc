@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="title">Green House Dashboard</h1>
+    <h1 class="title">Bugs Counter</h1>
 
     <div class="row center">
         <% for (let i=0; i < greenhouseData.length; i++) { %> 
@@ -28,7 +28,7 @@
 
                 <div id="<%= greenhouseData[i]._id %>" class="modal">
                     <div class="modal-content">
-                        <span class="card-title grey-text text-darken-4"> Update <%= greenhouseData[i]._id %> </span>
+                        <span class="card-title grey-text text-darken-4"> Update pod <%= greenhouseData[i].podName %> </span>
                         
                         <form id="<%= greenhouseData[i]._id %>_recordForm" class="col s12 recordForm">
                             <div class="input-field col s12">
