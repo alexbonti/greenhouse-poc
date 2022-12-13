@@ -6,7 +6,7 @@
     "cf-deployment-tracker-client": "*",
     "commander": "^2.6.0",
     "ejs": "^3.1.5",
-    "express": "^4.14.1",
+    "express": "^4.17.3",
     "express-validator": "^6.8.0",
     "http-post": "^0.1.1",
     "http-proxy": "^1.8.1",
